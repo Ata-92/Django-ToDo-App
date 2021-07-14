@@ -4,6 +4,13 @@
 
 <div>
   <h2>ToDo List</h2>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Create">
+  </form>
+
   <ul>
     {% for todo in todos %}
       <a href="{% url 'update' todo.id %}">
