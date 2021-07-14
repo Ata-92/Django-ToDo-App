@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from todo.forms import TodoAddForm
 from todo.models import Todo
 
 # Create your views here.
@@ -12,3 +13,13 @@ def todo_list(request):
     }
     return render(request, "todo/todo_list.html", context)
 
+def todo_create(request):
+    form = TodoAddForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect("list")
+
+    context = {
+        "form": form
+    }
+    return render(request, "todo/todo_create.html", context)
