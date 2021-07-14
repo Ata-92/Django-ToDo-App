@@ -1,5 +1,5 @@
-from django.shortcuts import redirect, render
-from todo.forms import TodoAddForm
+from django.shortcuts import get_object_or_404, redirect, render
+from todo.forms import TodoAddForm, TodoUpdateForm
 from todo.models import Todo
 
 # Create your views here.
@@ -23,3 +23,15 @@ def todo_create(request):
         "form": form
     }
     return render(request, "todo/todo_create.html", context)
+
+def todo_update(request, id):
+    todo = get_object_or_404(Todo, id=id)
+    form = TodoUpdateForm(request.POST or None, instance=todo)
+    if form.is_valid():
+        form.save()
+        return redirect("list")
+
+    context = {
+        "form": form
+    }
+    return render(request, "todo/todo_update.html", context)
