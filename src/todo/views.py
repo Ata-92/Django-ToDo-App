@@ -29,7 +29,7 @@ def todo_update(request, id):
     form = TodoUpdateForm(request.POST or None, instance=todo)
     if form.is_valid():
         form.save()
-        return redirect("list")
+        return redirect("todo-list")
 
     context = {
         "form": form
