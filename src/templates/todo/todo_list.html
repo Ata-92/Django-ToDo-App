@@ -3,7 +3,11 @@
 <ul>
 {% block content %}
   {% for todo in todos %}
-    <li>{{todo}}</li>
+    {% if todo.completed == True %}
+      <del><li>{{todo}}</li></del>
+    {% else %}
+      <li>{{todo}}</li>
+    {% endif %}
   {% endfor %}
 </ul>
 
