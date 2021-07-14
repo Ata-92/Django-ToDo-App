@@ -17,7 +17,7 @@ def todo_create(request):
     form = TodoAddForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect("list")
+        return redirect("todo-list")
 
     context = {
         "form": form
