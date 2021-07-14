@@ -32,7 +32,8 @@ def todo_update(request, id):
         return redirect("todo-list")
 
     context = {
-        "form": form
+        "form": form,
+        "todo": todo
     }
     return render(request, "todo/todo_update.html", context)
 
