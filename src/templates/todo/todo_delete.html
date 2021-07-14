@@ -5,9 +5,11 @@
   <form action="" method="POST">
     {% csrf_token %}
     {{todo}}
-    <p>Are you sure to delete?</p>
-    <input type="submit" value="Delete">
-    <a href={% url 'todo-list' %}><button>Cancel</button></a>
+    <p>
+      Are you sure to delete?
+      <input type="submit" value="Delete">
+    </p>
+    <a href={% url 'todo-list' %}><button type="button">Cancel</button></a>
   </form>
 
 {% endblock content %}
