@@ -11,3 +11,8 @@ class TodoUpdateForm(forms.ModelForm):
     class Meta:
         model = Todo
         fields = ("title", "completed")
+
+class TodoDeleteForm(forms.ModelForm):
+    class Meta:
+        model = Todo
+        fields = ("title", "completed")
