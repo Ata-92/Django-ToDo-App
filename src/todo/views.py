@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from todo.forms import TodoAddForm, TodoUpdateForm
+from todo.forms import TodoAddForm, TodoDeleteForm, TodoUpdateForm
 from todo.models import Todo
 
 # Create your views here.
@@ -35,3 +35,13 @@ def todo_update(request, id):
         "form": form
     }
     return render(request, "todo/todo_update.html", context)
+
+def todo_delete(request, id):
+    todo = get_object_or_404(Todo, id=id)
+    if request.method == "POST":
+        todo.delete()
+        return redirect("todo-list")
+    context = {
+        "todo": todo
+    }
+    return render(request, "todo/todo_delete.html", context)
